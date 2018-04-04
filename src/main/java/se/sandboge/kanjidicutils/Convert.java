@@ -12,27 +12,60 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Scanner;
 
 public class Convert {
+    private static final String GENERIC = "/transform.xsl";
+    private static final String GAKUSEI_KANJIS = "/transform_gk.xsl";
+
     public static void main(String[] args) {
         String sourcePath = "/kanjidic2.xml";
-        String transform = "/transform.xsl";
+        String transform = GAKUSEI_KANJIS;
+
+        if (args.length == 1 && args[0].equals("generic")) {
+            transform = GENERIC;
+        }
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         String text = parseFile(transform, sourcePath, factory);
+
+        if (!transform.equals(GENERIC)) {
+            text = checkEntries(text);
+        }
         System.out.println(text);
+    }
+
+    private static String checkEntries(String text) {
+        StringBuilder result = new StringBuilder();
+        Scanner scanner = new Scanner(text);
+        while (scanner.hasNextLine()) {
+            result.append((checkLine(scanner.nextLine())));
+        }
+        return result.toString();
+    }
+
+    private static String checkLine(String s) {
+        String[] splits = s.split("\\$");
+        if (splits.length != 8) {
+            return "";
+        }
+        if (splits[6].length() > 31) {
+            splits[6] = splits[6].substring(0,32);
+        }
+        if (splits[7].length() > 31) {
+            splits[7] = splits[7].substring(0,32);
+        }
+        String text = "";
+        for (String p :splits) {
+            text += p + '$';
+        }
+        return text.substring(0, text.length() - 1) + '\n';
     }
 
     private static String parseFile(String template, String file, DocumentBuilderFactory factory) {
         try {
-//            factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(Convert.class.getResourceAsStream(file));
 
