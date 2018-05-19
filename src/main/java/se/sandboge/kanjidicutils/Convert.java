@@ -14,7 +14,9 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.sql.*;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Convert {
     private static final String GENERIC = "/transform.xsl";
@@ -33,8 +35,9 @@ public class Convert {
 
         if (!transform.equals(GENERIC)) {
             text = checkEntries(text);
+            storeData(text);
         }
-        System.out.println(text);
+        //System.out.println(text);
     }
 
     private static String checkEntries(String text) {
@@ -52,13 +55,13 @@ public class Convert {
             return "";
         }
         if (splits[6].length() > 31) {
-            splits[6] = splits[6].substring(0,32);
+            splits[6] = splits[6].substring(0, 32);
         }
         if (splits[7].length() > 31) {
-            splits[7] = splits[7].substring(0,32);
+            splits[7] = splits[7].substring(0, 32);
         }
         String text = "";
-        for (String p :splits) {
+        for (String p : splits) {
             text += p + '$';
         }
         return text.substring(0, text.length() - 1) + '\n';
@@ -84,4 +87,34 @@ public class Convert {
         }
         return null;
     }
+
+    private static void storeData(String text) {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gakusei?user=&password=");
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO contentschema.kanjis(kanji, id, description, hidden, english, swedish)" +
+                            "VALUES (?,?,?,?,?,?)");
+            for (String line : text.split(Pattern.quote("\n"))) {
+                System.out.print(line);
+                String[] items = line.split(Pattern.quote("$"));
+                System.out.println(items.length);
+                statement.setString(1, items[0]);
+                statement.setString(2, items[1]);
+                statement.setString(3, items[6]);
+                statement.setBoolean(4, false);
+                statement.setString(5, items[7]);
+                statement.setString(6, "-");
+                statement.execute();
+            }
+
+            Statement resStmt = connection.createStatement();
+            ResultSet resultSet = resStmt.executeQuery("SELECT COUNT(*) FROM contentschema.kanjis");
+            resultSet.next();
+            System.out.println(resultSet.getLong(1));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
