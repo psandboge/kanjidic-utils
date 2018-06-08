@@ -104,7 +104,7 @@ public class Convert {
                 statement.setString(3, items[6]);
                 statement.setBoolean(4, false);
                 statement.setString(5, items[7]);
-                statement.setString(6, "-");
+                statement.setString(6, items[7]);
                 statement.execute();
             }
 
