@@ -17,8 +17,10 @@
         <xsl:if test="child::gloss[@lang='swe']">
             <xsl:apply-templates select="../k_ele"/>
             <xsl:apply-templates select="../r_ele"/>
-            <xsl:text>sense:</xsl:text>
+            <xsl:text>sv:</xsl:text>
             <xsl:apply-templates select="gloss[@lang='swe']"/>
+            <xsl:text>en:</xsl:text>
+            <xsl:apply-templates select="../sense/gloss[@lang='eng']"/>
         </xsl:if>
     </xsl:template>
 
