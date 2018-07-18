@@ -15,6 +15,7 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -23,8 +24,8 @@ import java.util.regex.Pattern;
 
 /**
  * IMPORTANT!
- *  RUN WITH -Djdk.xml.entityExpansionLimit=0
- *
+ * RUN WITH -Djdk.xml.entityExpansionLimit=0
+ * <p>
  * Use with jmdict (http://edrdg.org/jmdict/j_jmdict.html)
  */
 public class Extract {
@@ -38,14 +39,20 @@ public class Extract {
             transform = JTRANSFORM＿SV;
         }
 
+        storeData(extract(transform, sourcePath));
+    }
+
+    public static List<Row> extract(String transform, String sourcePath) {
+
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         String text = parseFile(transform, sourcePath, factory);
 
         List<Row> rows = splitText(text);
         for (Row row :
                 rows) {
-            System.out.println(row);
+//            System.out.println(row);
         }
+        return rows;
     }
 
     private static List<Row> splitText(String text) {
@@ -67,10 +74,10 @@ public class Extract {
             return row;
         } else if (items.length > 4) {
             int index = 0;
-            for(int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++) {
                 index = rowString.indexOf('€', index) + 1;
             }
-            index --;
+            index--;
             System.out.println(rowString + ", " + index);
             row.addAll(splitRow(rowString.substring(index + 1)));
         }
@@ -80,6 +87,55 @@ public class Extract {
         List<String> reading = splitWords(items[1]);
         row.add(new Row(reading, writing, sv, en));
         return row;
+    }
+
+    private static void storeData(List<Row> rows) {
+        Connection connection = null;
+        try {
+//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gakusei?user=&password=");
+//            PreparedStatement statement = connection.prepareStatement(
+//                    "INSERT INTO contentschema.nuggets(id, description, hidden, english, swedish)" +
+//                            "VALUES (?,?,?,?,?,?)");
+            //rows: 14618, total: 26102
+            int count = 0;
+            int blanks = 0;
+            for (Row row : rows) {
+                if (row.reading.size() == 0) blanks++;
+                for (String writing : row.writing) {
+                    for (String reading : row.reading) {
+                        if (writing.isEmpty()) {
+                            writing = reading;
+                        }
+                        for (String sv : row.sv) {
+//                            for (String en : row.en) {
+                                count++;
+                                System.out.print(writing + ',');
+                                System.out.print(reading + ',');
+                                System.out.print(sv + ',');
+                                System.out.println(row.en.get(0));
+//                            }
+                        }
+                    }
+                }
+//                statement.setString(1, items[0]);
+//                statement.setString(2, items[1]);
+//                statement.setString(3, items[6]);
+//                statement.setBoolean(4, false);
+//                statement.setString(5, items[7]);
+//                statement.setString(6, items[7]);
+//                statement.execute();
+            }
+            System.out.print("rows: " + rows.size());
+            System.out.print("blanks: " + blanks);
+            System.out.println(", total: " + count);
+
+//            Statement resStmt = connection.createStatement();
+//            ResultSet resultSet = resStmt.executeQuery("SELECT COUNT(*) FROM contentschema.kanjis");
+//            resultSet.next();
+//            System.out.println(resultSet.getLong(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static List<String> splitWords(String item) {
