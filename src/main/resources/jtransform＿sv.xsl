@@ -23,12 +23,25 @@
             <xsl:text>€</xsl:text>
             <xsl:apply-templates select="../sense/gloss[@lang='eng']"/>
             <xsl:text>€</xsl:text>
+            <xsl:apply-templates select="../sense/pos"/>
+            <xsl:text>€</xsl:text>
+            <xsl:apply-templates select="../ent_seq"/>
+            <xsl:text>€</xsl:text>
         </xsl:if>
     </xsl:template>
 
     <xsl:template match="gloss">
         <xsl:value-of select="text()"/>
-        <xsl:text>,</xsl:text>
+        <xsl:text>§</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="pos">
+        <xsl:value-of select="text()"/>
+        <xsl:text>§</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="ent_seq">
+        <xsl:value-of select="text()"/>
     </xsl:template>
 
     <xsl:template match="r_ele">
@@ -41,12 +54,12 @@
 
     <xsl:template match="reb">
         <xsl:value-of select="text()"/>
-        <xsl:text>,</xsl:text>
+        <xsl:text>§</xsl:text>
     </xsl:template>
 
     <xsl:template match="keb">
         <xsl:value-of select="text()"/>
-        <xsl:text>,</xsl:text>
+        <xsl:text>§</xsl:text>
     </xsl:template>
 
 </xsl:stylesheet>
