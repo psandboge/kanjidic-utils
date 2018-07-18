@@ -1,0 +1,348 @@
+<!ENTITY MA "MA">
+<!ENTITY X "X">
+<!ENTITY abbr "abbr">
+<!ENTITY adj-i "adj-i">
+<!ENTITY adj-ix "adj-ix">
+<!ENTITY adj-na "adj-na">
+<!ENTITY adj-no "adj-no">
+<!ENTITY adj-pn "adj-pn">
+<!ENTITY adj-t "adj-t">
+<!ENTITY adj-f "adj-f">
+<!ENTITY adv "adv">
+<!ENTITY adv-to "adv-to">
+<!ENTITY arch "arch">
+<!ENTITY ateji "ateji">
+<!ENTITY aux "aux">
+<!ENTITY aux-v "aux-v">
+<!ENTITY aux-adj "aux-adj">
+<!ENTITY Buddh "Buddh">
+<!ENTITY chem "chem">
+<!ENTITY chn "chn">
+<!ENTITY col "col">
+<!ENTITY comp "comp">
+<!ENTITY conj "conj">
+<!ENTITY cop-da "cop-da">
+<!ENTITY ctr "ctr">
+<!ENTITY derog "derog">
+<!ENTITY eK "eK">
+<!ENTITY ek "ek">
+<!ENTITY exp "exp">
+<!ENTITY fam "fam">
+<!ENTITY fem "fem">
+<!ENTITY food "food">
+<!ENTITY geom "geom">
+<!ENTITY gikun "gikun">
+<!ENTITY hon "hon">
+<!ENTITY hum "hum">
+<!ENTITY iK "iK">
+<!ENTITY id "id">
+<!ENTITY ik "">
+<!ENTITY int "int">
+<!ENTITY io "io">
+<!ENTITY iv "iv">
+<!ENTITY ling "ling">
+<!ENTITY m-sl "m-sl">
+<!ENTITY male "male">
+<!ENTITY male-sl "male-sl">
+<!ENTITY math "math">
+<!ENTITY mil "mil">
+<!ENTITY n "n">
+<!ENTITY n-adv "n-adv">
+<!ENTITY n-suf "n-suf">
+<!ENTITY n-pref "n-pref">
+<!ENTITY n-t "n-t">
+<!ENTITY num "num">
+<!ENTITY oK "oK">
+<!ENTITY obs "obs">
+<!ENTITY obsc "obsc">
+<!ENTITY ok "ok">
+<!ENTITY oik "oik">
+<!ENTITY on-mim "on-mim">
+<!ENTITY pn "pn">
+<!ENTITY poet "poet">
+<!ENTITY pol "pol">
+<!ENTITY pref "pref">
+<!ENTITY proverb "proverb">
+<!ENTITY prt "prt">
+<!ENTITY physics "physics">
+<!ENTITY quote "quote">
+<!ENTITY rare "rare">
+<!ENTITY sens "sens">
+<!ENTITY sl "sl">
+<!ENTITY suf "suf">
+<!ENTITY uK "uK">
+<!ENTITY uk "uk">
+<!ENTITY unc "unc">
+<!ENTITY yoji "yoji">
+<!ENTITY v1 "v1">
+<!ENTITY v1-s "v1-s">
+<!ENTITY v2a-s "v2a-s">
+<!ENTITY v4h "v4h">
+<!ENTITY v4r "v4r">
+<!ENTITY v5aru "v5aru">
+<!ENTITY v5b "v5b">
+<!ENTITY v5g "v5g">
+<!ENTITY v5k "v5k">
+<!ENTITY v5k-s "v5k-s">
+<!ENTITY v5m "v5m">
+<!ENTITY v5n "v5n">
+<!ENTITY v5r "v5r">
+<!ENTITY v5r-i "v5r-i">
+<!ENTITY v5s "v5s">
+<!ENTITY v5t "v5t">
+<!ENTITY v5u "v5u">
+<!ENTITY v5u-s "v5u-s">
+<!ENTITY v5uru "v5uru">
+<!ENTITY vz "vz">
+<!ENTITY vi "vi">
+<!ENTITY vk "vk">
+<!ENTITY vn "vn">
+<!ENTITY vr "vr">
+<!ENTITY vs "vs">
+<!ENTITY vs-c "vs-c">
+<!ENTITY vs-s "vs-s">
+<!ENTITY vs-i "vs-i">
+<!ENTITY kyb "kyb">
+<!ENTITY osb "osb">
+<!ENTITY ksb "ksb">
+<!ENTITY ktb "ktb">
+<!ENTITY tsb "tsb">
+<!ENTITY thb "thb">
+<!ENTITY tsug "tsug">
+<!ENTITY kyu "kyu">
+<!ENTITY rkb "rkb">
+<!ENTITY nab "nab">
+<!ENTITY hob "hob">
+<!ENTITY vt "vt">
+<!ENTITY vulg "vulg">
+<!ENTITY adj-kari "adj-kari">
+<!ENTITY adj-ku "adj-ku">
+<!ENTITY adj-shiku "adj-shiku">
+<!ENTITY adj-nari "adj-nari">
+<!ENTITY n-pr "n-pr">
+<!ENTITY v-unspec "v-unspec">
+<!ENTITY v4k "v4k">
+<!ENTITY v4g "v4g">
+<!ENTITY v4s "v4s">
+<!ENTITY v4t "v4t">
+<!ENTITY v4n "v4n">
+<!ENTITY v4b "v4b">
+<!ENTITY v4m "v4m">
+<!ENTITY v2k-k "v2k-k">
+<!ENTITY v2g-k "v2g-k">
+<!ENTITY v2t-k "v2t-k">
+<!ENTITY v2d-k "v2d-k">
+<!ENTITY v2h-k "v2h-k">
+<!ENTITY v2b-k "v2b-k">
+<!ENTITY v2m-k "v2m-k">
+<!ENTITY v2y-k "v2y-k">
+<!ENTITY v2r-k "v2r-k">
+<!ENTITY v2k-s "v2k-s">
+<!ENTITY v2g-s "v2g-s">
+<!ENTITY v2s-s "v2s-s">
+<!ENTITY v2z-s "v2z-s">
+<!ENTITY v2t-s "v2t-s">
+<!ENTITY v2d-s "v2d-s">
+<!ENTITY v2n-s "v2n-s">
+<!ENTITY v2h-s "v2h-s">
+<!ENTITY v2b-s "v2b-s">
+<!ENTITY v2m-s "v2m-s">
+<!ENTITY v2y-s "v2y-s">
+<!ENTITY v2r-s "v2r-s">
+<!ENTITY v2w-s "v2w-s">
+<!ENTITY archit "archit">
+<!ENTITY astron "astron">
+<!ENTITY baseb "baseb">
+<!ENTITY biol "biol">
+<!ENTITY bot "bot">
+<!ENTITY bus "bus">
+<!ENTITY econ "econ">
+<!ENTITY engr "engr">
+<!ENTITY finc "finc">
+<!ENTITY geol "geol">
+<!ENTITY law "law">
+<!ENTITY mahj "mahj">
+<!ENTITY med "med">
+<!ENTITY music "music">
+<!ENTITY Shinto "Shinto">
+<!ENTITY shogi "shogi">
+<!ENTITY sports "sports">
+<!ENTITY sumo "sumo">
+<!ENTITY zool "zool">
+<!ENTITY joc "joc">
+<!ENTITY anat "anat">
+
+orginal:
+<!ENTITY MA "martial arts term">
+<!ENTITY X "rude or X-rated term (not displayed in educational software)">
+<!ENTITY abbr "abbreviation">
+<!ENTITY adj-i "adjective (keiyoushi)">
+<!ENTITY adj-ix "adjective (keiyoushi) - yoi/ii class">
+<!ENTITY adj-na "adjectival nouns or quasi-adjectives (keiyodoshi)">
+<!ENTITY adj-no "nouns which may take the genitive case particle `no'">
+<!ENTITY adj-pn "pre-noun adjectival (rentaishi)">
+<!ENTITY adj-t "`taru' adjective">
+<!ENTITY adj-f "noun or verb acting prenominally">
+<!ENTITY adv "adverb (fukushi)">
+<!ENTITY adv-to "adverb taking the `to' particle">
+<!ENTITY arch "archaism">
+<!ENTITY ateji "ateji (phonetic) reading">
+<!ENTITY aux "auxiliary">
+<!ENTITY aux-v "auxiliary verb">
+<!ENTITY aux-adj "auxiliary adjective">
+<!ENTITY Buddh "Buddhist term">
+<!ENTITY chem "chemistry term">
+<!ENTITY chn "children's language">
+<!ENTITY col "colloquialism">
+<!ENTITY comp "computer terminology">
+<!ENTITY conj "conjunction">
+<!ENTITY cop-da "copula">
+<!ENTITY ctr "counter">
+<!ENTITY derog "derogatory">
+<!ENTITY eK "exclusively kanji">
+<!ENTITY ek "exclusively kana">
+<!ENTITY exp "expressions (phrases, clauses, etc.)">
+<!ENTITY fam "familiar language">
+<!ENTITY fem "female term or language">
+<!ENTITY food "food term">
+<!ENTITY geom "geometry term">
+<!ENTITY gikun "gikun (meaning as reading) or jukujikun (special kanji reading)">
+<!ENTITY hon "honorific or respectful (sonkeigo) language">
+<!ENTITY hum "humble (kenjougo) language">
+<!ENTITY iK "word containing irregular kanji usage">
+<!ENTITY id "idiomatic expression">
+<!ENTITY ik "word containing irregular kana usage">
+<!ENTITY int "interjection (kandoushi)">
+<!ENTITY io "irregular okurigana usage">
+<!ENTITY iv "irregular verb">
+<!ENTITY ling "linguistics terminology">
+<!ENTITY m-sl "manga slang">
+<!ENTITY male "male term or language">
+<!ENTITY male-sl "male slang">
+<!ENTITY math "mathematics">
+<!ENTITY mil "military">
+<!ENTITY n "noun (common) (futsuumeishi)">
+<!ENTITY n-adv "adverbial noun (fukushitekimeishi)">
+<!ENTITY n-suf "noun, used as a suffix">
+<!ENTITY n-pref "noun, used as a prefix">
+<!ENTITY n-t "noun (temporal) (jisoumeishi)">
+<!ENTITY num "numeric">
+<!ENTITY oK "word containing out-dated kanji">
+<!ENTITY obs "obsolete term">
+<!ENTITY obsc "obscure term">
+<!ENTITY ok "out-dated or obsolete kana usage">
+<!ENTITY oik "old or irregular kana form">
+<!ENTITY on-mim "onomatopoeic or mimetic word">
+<!ENTITY pn "pronoun">
+<!ENTITY poet "poetical term">
+<!ENTITY pol "polite (teineigo) language">
+<!ENTITY pref "prefix">
+<!ENTITY proverb "proverb">
+<!ENTITY prt "particle">
+<!ENTITY physics "physics terminology">
+<!ENTITY quote "quotation">
+<!ENTITY rare "rare">
+<!ENTITY sens "sensitive">
+<!ENTITY sl "slang">
+<!ENTITY suf "suffix">
+<!ENTITY uK "word usually written using kanji alone">
+<!ENTITY uk "word usually written using kana alone">
+<!ENTITY unc "unclassified">
+<!ENTITY yoji "yojijukugo">
+<!ENTITY v1 "Ichidan verb">
+<!ENTITY v1-s "Ichidan verb - kureru special class">
+<!ENTITY v2a-s "Nidan verb with 'u' ending (archaic)">
+<!ENTITY v4h "Yodan verb with `hu/fu' ending (archaic)">
+<!ENTITY v4r "Yodan verb with `ru' ending (archaic)">
+<!ENTITY v5aru "Godan verb - -aru special class">
+<!ENTITY v5b "Godan verb with `bu' ending">
+<!ENTITY v5g "Godan verb with `gu' ending">
+<!ENTITY v5k "Godan verb with `ku' ending">
+<!ENTITY v5k-s "Godan verb - Iku/Yuku special class">
+<!ENTITY v5m "Godan verb with `mu' ending">
+<!ENTITY v5n "Godan verb with `nu' ending">
+<!ENTITY v5r "Godan verb with `ru' ending">
+<!ENTITY v5r-i "Godan verb with `ru' ending (irregular verb)">
+<!ENTITY v5s "Godan verb with `su' ending">
+<!ENTITY v5t "Godan verb with `tsu' ending">
+<!ENTITY v5u "Godan verb with `u' ending">
+<!ENTITY v5u-s "Godan verb with `u' ending (special class)">
+<!ENTITY v5uru "Godan verb - Uru old class verb (old form of Eru)">
+<!ENTITY vz "Ichidan verb - zuru verb (alternative form of -jiru verbs)">
+<!ENTITY vi "intransitive verb">
+<!ENTITY vk "Kuru verb - special class">
+<!ENTITY vn "irregular nu verb">
+<!ENTITY vr "irregular ru verb, plain form ends with -ri">
+<!ENTITY vs "noun or participle which takes the aux. verb suru">
+<!ENTITY vs-c "su verb - precursor to the modern suru">
+<!ENTITY vs-s "suru verb - special class">
+<!ENTITY vs-i "suru verb - irregular">
+<!ENTITY kyb "Kyoto-ben">
+<!ENTITY osb "Osaka-ben">
+<!ENTITY ksb "Kansai-ben">
+<!ENTITY ktb "Kantou-ben">
+<!ENTITY tsb "Tosa-ben">
+<!ENTITY thb "Touhoku-ben">
+<!ENTITY tsug "Tsugaru-ben">
+<!ENTITY kyu "Kyuushuu-ben">
+<!ENTITY rkb "Ryuukyuu-ben">
+<!ENTITY nab "Nagano-ben">
+<!ENTITY hob "Hokkaido-ben">
+<!ENTITY vt "transitive verb">
+<!ENTITY vulg "vulgar expression or word">
+<!ENTITY adj-kari "`kari' adjective (archaic)">
+<!ENTITY adj-ku "`ku' adjective (archaic)">
+<!ENTITY adj-shiku "`shiku' adjective (archaic)">
+<!ENTITY adj-nari "archaic/formal form of na-adjective">
+<!ENTITY n-pr "proper noun">
+<!ENTITY v-unspec "verb unspecified">
+<!ENTITY v4k "Yodan verb with `ku' ending (archaic)">
+<!ENTITY v4g "Yodan verb with `gu' ending (archaic)">
+<!ENTITY v4s "Yodan verb with `su' ending (archaic)">
+<!ENTITY v4t "Yodan verb with `tsu' ending (archaic)">
+<!ENTITY v4n "Yodan verb with `nu' ending (archaic)">
+<!ENTITY v4b "Yodan verb with `bu' ending (archaic)">
+<!ENTITY v4m "Yodan verb with `mu' ending (archaic)">
+<!ENTITY v2k-k "Nidan verb (upper class) with `ku' ending (archaic)">
+<!ENTITY v2g-k "Nidan verb (upper class) with `gu' ending (archaic)">
+<!ENTITY v2t-k "Nidan verb (upper class) with `tsu' ending (archaic)">
+<!ENTITY v2d-k "Nidan verb (upper class) with `dzu' ending (archaic)">
+<!ENTITY v2h-k "Nidan verb (upper class) with `hu/fu' ending (archaic)">
+<!ENTITY v2b-k "Nidan verb (upper class) with `bu' ending (archaic)">
+<!ENTITY v2m-k "Nidan verb (upper class) with `mu' ending (archaic)">
+<!ENTITY v2y-k "Nidan verb (upper class) with `yu' ending (archaic)">
+<!ENTITY v2r-k "Nidan verb (upper class) with `ru' ending (archaic)">
+<!ENTITY v2k-s "Nidan verb (lower class) with `ku' ending (archaic)">
+<!ENTITY v2g-s "Nidan verb (lower class) with `gu' ending (archaic)">
+<!ENTITY v2s-s "Nidan verb (lower class) with `su' ending (archaic)">
+<!ENTITY v2z-s "Nidan verb (lower class) with `zu' ending (archaic)">
+<!ENTITY v2t-s "Nidan verb (lower class) with `tsu' ending (archaic)">
+<!ENTITY v2d-s "Nidan verb (lower class) with `dzu' ending (archaic)">
+<!ENTITY v2n-s "Nidan verb (lower class) with `nu' ending (archaic)">
+<!ENTITY v2h-s "Nidan verb (lower class) with `hu/fu' ending (archaic)">
+<!ENTITY v2b-s "Nidan verb (lower class) with `bu' ending (archaic)">
+<!ENTITY v2m-s "Nidan verb (lower class) with `mu' ending (archaic)">
+<!ENTITY v2y-s "Nidan verb (lower class) with `yu' ending (archaic)">
+<!ENTITY v2r-s "Nidan verb (lower class) with `ru' ending (archaic)">
+<!ENTITY v2w-s "Nidan verb (lower class) with `u' ending and `we' conjugation (archaic)">
+<!ENTITY archit "architecture term">
+<!ENTITY astron "astronomy, etc. term">
+<!ENTITY baseb "baseball term">
+<!ENTITY biol "biology term">
+<!ENTITY bot "botany term">
+<!ENTITY bus "business term">
+<!ENTITY econ "economics term">
+<!ENTITY engr "engineering term">
+<!ENTITY finc "finance term">
+<!ENTITY geol "geology, etc. term">
+<!ENTITY law "law, etc. term">
+<!ENTITY mahj "mahjong term">
+<!ENTITY med "medicine, etc. term">
+<!ENTITY music "music term">
+<!ENTITY Shinto "Shinto term">
+<!ENTITY shogi "shogi term">
+<!ENTITY sports "sports term">
+<!ENTITY sumo "sumo term">
+<!ENTITY zool "zoology term">
+<!ENTITY joc "jocular, humorous term">
+<!ENTITY anat "anatomical term">
