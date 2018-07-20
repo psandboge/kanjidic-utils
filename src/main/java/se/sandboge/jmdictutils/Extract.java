@@ -102,13 +102,12 @@ public class Extract {
     }
 
     private static void storeData(List<Row> rows) {
-        Connection connection = null;
         int i = 0;
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gakusei?user=&password=");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gakusei?user=&password=");
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO contentschema.nuggets(id, description, hidden, category, swedish, english, jp_read, jp_write, word_type_ref) " +
-                            "SELECT ?,?,?,'vocabulary',?,?,?,?,id " +
+                    "INSERT INTO contentschema.nuggets(id, description, hidden, swedish, english, jp_read, jp_write, word_type_ref) " +
+                            "SELECT ?,?,?,?,?,?,?,id " +
                             "FROM contentschema.word_types " +
                             "WHERE type = ?");
             //rows: 14618, total: 26102
