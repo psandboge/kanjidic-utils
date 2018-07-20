@@ -18,7 +18,6 @@ import java.io.StringWriter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -29,30 +28,25 @@ import java.util.regex.Pattern;
  * Use with jmdict (http://edrdg.org/jmdict/j_jmdict.html)
  */
 public class Extract {
-    private static final String JTRANSFORM＿SV = "/jtransform＿sv.xsl";
+    private static final String JTRANSFORM_SV = "/jtransform＿sv.xsl";
 
     public static void main(String[] args) {
         String sourcePath = args[0];
-        String transform = JTRANSFORM＿SV;
-
-        if (args.length == 2 && args[1].equals("generic")) {
-            transform = JTRANSFORM＿SV;
+        String transform = JTRANSFORM_SV;
+        if (args.length == 2) {
+            transform = args[1];
         }
 
         storeData(extract(transform, sourcePath));
     }
 
-    public static List<Row> extract(String transform, String sourcePath) {
+    private static List<Row> extract(String transform, String sourcePath) {
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         String text = parseFile(transform, sourcePath, factory);
+        text = text != null ? text : "";
 
-        List<Row> rows = splitText(text);
-        for (Row row :
-                rows) {
-//            System.out.println(row);
-        }
-        return rows;
+        return splitText(text);
     }
 
     private static List<Row> splitText(String text) {
@@ -127,34 +121,7 @@ public class Extract {
                             doClear = true;
                         }
                         for (String sv : row.sv) {
-                            String bestType = "unknown";
-                            for (String type :
-                                    row.type) {
-                                if ("n".equals(type) || "n-pref".equals(type) || "n-suf".equals(type) || "num".equals(type)
-                                        || "n-adv".equals(type) || "n-t".equals(type) || "pr".equals(type)) {
-                                    bestType = "noun";
-                                    break;
-                                } else if ("v5r".equals(type) || "vt".equals(type) || "vi".equals(type) || "v".equals(type)
-                                        || "v1".equals(type) || "vs-i".equals(type) || "aux-v".equals(type) || "v5k".equals(type)
-                                        || "v5g".equals(type)) {
-                                    bestType = "verb";
-                                    break;
-                                } else if ("adj-no".equals(type) || "adj-i".equals(type) || "adj-na".equals(type)
-                                        || "adj-to".equals(type) || "adj-f".equals(type) || "adj-t".equals(type)
-                                        || "adj-pn".equals(type) || "adj-ix".equals(type)) {
-                                    bestType = "adjective";
-                                    break;
-                                } else if ("adv".equals(type)) {
-                                    bestType = "adverb";
-                                    break;
-                                } else if ("ctr".equals(type)) {
-                                    bestType = "counter";
-                                    break;
-                                } else if ("conj".equals(type)) {
-                                    bestType = "conjunction";
-                                    break;
-                                }
-                            }
+                            String wordType = mapWordType(row.type);
 //                            for (String en : row.en) {
                                 count++;
                             if(count%10 == 0) {
@@ -163,7 +130,7 @@ public class Extract {
                                 System.out.print(sv + ',');
                                 System.out.print(row.en.get(0) + ',');
                                 System.out.print(row.id + ',');
-                                System.out.println(bestType);
+                                System.out.println(wordType);
 //                            }
                             }
                         }
@@ -191,6 +158,48 @@ public class Extract {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static String mapWordType(List<String> types) {
+        String bestType = "other";
+        for (String type : types) {
+            if ("n".equals(type) || "vs".equals(type) || "n-pref".equals(type) || "n-suf".equals(type)
+                    || "num".equals(type) || "n-adv".equals(type) || "n-t".equals(type) || "n-pr".equals(type)) {
+                bestType = "noun";
+                break;
+            } else if ("v5r".equals(type) || "vt".equals(type) || "vi".equals(type) || "v".equals(type)
+                    || "v1".equals(type) || "vs-i".equals(type) || "aux-v".equals(type) || "v5k".equals(type)
+                    || "v5g".equals(type) || "vs-s".equals(type) || "v5u".equals(type) || "v5m".equals(type)
+                    || "v5b".equals(type) || "v5s".equals(type) || "v5n".equals(type) || "v5t".equals(type)
+                    || "v1-s".equals(type) || "vn".equals(type) || "v5k-s".equals(type)) {
+                bestType = "verb";
+                break;
+            } else if ("adj-no".equals(type) || "adj-i".equals(type) || "adj-na".equals(type)
+                    || "adj-to".equals(type) || "adj-f".equals(type) || "adj-t".equals(type)
+                    || "adj-pn".equals(type) || "adj-ix".equals(type)) {
+                bestType = "adjective";
+                break;
+            } else if ("adv".equals(type)) {
+                bestType = "adverb";
+            } else if ("ctr".equals(type)) {
+                bestType = "counter";
+            } else if ("conj".equals(type)) {
+                bestType = "conjunction";
+            } else if ("exp".equals(type)) {
+                bestType = "expression";
+            } else if ("pn".equals(type)) {
+                bestType = "pronoun";
+            } else if ("int".equals(type)) {
+                bestType = "interjection";
+            } else if ("unc".equals(type)) {
+                bestType = "other";
+            } else if ("suf".equals(type)) {
+                bestType = "suffix";
+            } else if ("pref".equals(type)) {
+                bestType = "prefix";
+            }
+        }
+        return bestType;
     }
 
     private static List<String> splitWords(String item) {
@@ -227,7 +236,7 @@ public class Extract {
         List<String> sv;
         List<String> en;
 
-        public Row(List<String> reading, List<String> writing, List<String> sv, List<String> en, List<String> type, String id) {
+        Row(List<String> reading, List<String> writing, List<String> sv, List<String> en, List<String> type, String id) {
             this.reading = reading;
             this.writing = writing;
             this.sv = sv;
