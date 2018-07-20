@@ -72,7 +72,7 @@ public class Extract {
                 index = rowString.indexOf('€', index) + 1;
             }
             index--;
-            System.out.println(rowString + ", " + index);
+//            System.out.println(rowString + ", " + index);
             row.addAll(splitRow(rowString.substring(index + 1)));
         }
         String id = items[5];
@@ -103,15 +103,18 @@ public class Extract {
 
     private static void storeData(List<Row> rows) {
         Connection connection = null;
+        int i = 0;
         try {
-//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gakusei?user=&password=");
-//            PreparedStatement statement = connection.prepareStatement(
-//                    "INSERT INTO contentschema.nuggets(id, description, hidden, english, swedish)" +
-//                            "VALUES (?,?,?,?,?,?)");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/gakusei?user=&password=");
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO contentschema.nuggets(id, description, hidden, category, swedish, english, jp_read, jp_write, word_type_ref) " +
+                            "SELECT ?,?,?,'vocabulary',?,?,?,?,id " +
+                            "FROM contentschema.word_types " +
+                            "WHERE type = ?");
             //rows: 14618, total: 26102
             int count = 0;
             int blanks = 0;
-            for (Row row : rows) {
+            outer: for (Row row : rows) {
                 if (row.reading.size() == 0) blanks++;
                 for (String writing : row.writing) {
                     for (String reading : row.reading) {
@@ -123,38 +126,45 @@ public class Extract {
                         for (String sv : row.sv) {
                             String wordType = mapWordType(row.type);
 //                            for (String en : row.en) {
+                                String en = row.en.get(0);
                                 count++;
-                            if(count%10 == 0) {
                                 System.out.print(writing + ',');
                                 System.out.print(reading + ',');
                                 System.out.print(sv + ',');
-                                System.out.print(row.en.get(0) + ',');
+                                System.out.print(en + ',');
                                 System.out.print(row.id + ',');
                                 System.out.println(wordType);
+                                String id = "j_" + (i++);
+                                String description = row.id;
+                                statement.setString(1, id);
+                                statement.setString(2, description);
+                                statement.setBoolean(3, false);
+                                statement.setString(4, sv);
+                                statement.setString(5, en);
+                                statement.setString(6, reading);
+                                statement.setString(7, writing);
+                                statement.setString(8, wordType);
+                                statement.execute();
 //                            }
-                            }
                         }
+                        if (i > 1000000) break outer;
                         if (doClear) {
                             writing = "";
                         }
                     }
                 }
-//                statement.setString(1, items[0]);
-//                statement.setString(2, items[1]);
-//                statement.setString(3, items[6]);
-//                statement.setBoolean(4, false);
-//                statement.setString(5, items[7]);
-//                statement.setString(6, items[7]);
-//                statement.execute();
             }
             System.out.print("rows: " + rows.size());
             System.out.print("blanks: " + blanks);
             System.out.println(", total: " + count);
 
-//            Statement resStmt = connection.createStatement();
-//            ResultSet resultSet = resStmt.executeQuery("SELECT COUNT(*) FROM contentschema.kanjis");
-//            resultSet.next();
-//            System.out.println(resultSet.getLong(1));
+            statement.close();
+            Statement resStmt = connection.createStatement();
+            ResultSet resultSet = resStmt.executeQuery("SELECT COUNT(*) FROM contentschema.kanjis");
+            resultSet.next();
+            System.out.println(resultSet.getLong(1));
+            resStmt.close();
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
